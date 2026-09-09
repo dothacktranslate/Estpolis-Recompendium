@@ -1,8 +1,15 @@
 # Project Status
 
+## Framework Baseline
+
+SNESRecomp:
+41704d27525a2e53fdf1ce0ea34e40aa86e50a97
+
+Baseline established:
+2026-09-09 15:30:00 -0700
+
 ## Estopolis Denki / Lufia I
 
-- SNESRecomp (41704d27525a2e53fdf1ce0ea34e40aa86e50a97) Setup: Complete
 - Recompilation: Not started
 - Boot: Not started
 - Video: Not started
