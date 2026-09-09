@@ -1,0 +1,3 @@
+[submodule "extern/snesrecomp"]
+	path = extern/snesrecomp
+	url = https://github.com/RetroPortingToolKit/snesrecomp.git
