@@ -10,7 +10,10 @@ Baseline established:
 
 ## Estopolis Denki / Lufia I
 
-- Recompilation: Not started
+Lufia I (USA) SHA256: 73731a5a7932965de02a9e98055dcf88b4d17b8f710a6ecfde3e36a1f248773b
+
+- Project Setup: Complete
+- Recompilation: In Progress
 - Boot: Not started
 - Video: Not started
 - Audio: Not started
@@ -19,6 +22,7 @@ Baseline established:
 
 ## Estopolis Denki II / Lufia II
 
+- Project Setup: Not started
 - Recompilation: Not started
 - Boot: Not started
 - Video: Not started
