@@ -13,10 +13,10 @@ Baseline established:
 Lufia I (USA) SHA256: 73731a5a7932965de02a9e98055dcf88b4d17b8f710a6ecfde3e36a1f248773b
 
 - Project Setup: Complete
-- Recompilation: In Progress
-- Boot: Not started
-- Video: Not started
-- Audio: Not started
+- Recompilation: Complete
+- Boot: Complete
+- Video: Complete
+- Audio: In Progress
 - Input: Not started
 - Gameplay: Not started
 
