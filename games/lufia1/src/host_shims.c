@@ -1,36 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
- * Headless bootstrap-only host shims.
- *
- * No SDL audio callback/thread exists in this diagnostic executable,
- * so the APU lock is intentionally a no-op.
- */
-void RtlApuLock(void) {
-}
-
-void RtlApuUnlock(void) {
-}
+#include "spc_player.h"
 
 /*
- * The shared runner still contains a legacy/HLE SPC-player pointer.
+ * The MMX reference host supplies a game-specific HLE SPC player.
  *
- * This raw probe uses the real SNES SPC/APU hardware path and does not
- * call RtlReset(), which is the remaining code path that dereferences
- * this pointer in the current runner revision.
+ * Lufia I currently uses SNESRecomp's real SPC/APU hardware path instead,
+ * so no game-specific HLE player is installed here.
  *
- * This is diagnostic scaffolding only, not production integration.
+ * The shared runner still references this legacy pointer from RtlReset().
+ * The current Lufia I startup/runtime path does not call that reset path.
  */
-void *g_spc_player = NULL;
+SpcPlayer *g_spc_player = NULL;
+
 
 /*
- * Generic fatal-error hook expected by several shared runner utilities.
+ * Generic fatal-error hook expected by shared runner utilities.
  */
-void Die(const char *error) {
-    fprintf(stderr,
-            "[host] fatal error: %s\n",
-            error ? error : "(unknown)");
+void Die(const char *error)
+{
+    fprintf(
+        stderr,
+        "[host] fatal error: %s\n",
+        error ? error : "(unknown)");
+
     fflush(stderr);
     exit(EXIT_FAILURE);
 }

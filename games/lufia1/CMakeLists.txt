@@ -97,6 +97,7 @@ add_executable(
 
     src/main.c
     src/host_shims.c
+    src/host_audio.c
     src/lufia1_game_info.c
     src/lufia1_runtime.c
 )

@@ -7,6 +7,7 @@
 
 #include "common_cpu_infra.h"
 #include "common_rtl.h"
+#include "host_audio.h"
 #include "lufia1_runtime.h"
 #include "snes/ppu.h"
 
@@ -14,7 +15,7 @@ extern const RtlGameInfo kLufia1GameInfo;
 extern Ppu *g_ppu;
 
 /*
- * Headless/native SNES framebuffer.
+ * Native SNES framebuffer used by the SDL presentation host.
  *
  * The legacy renderer writes B,G,R,0 bytes. On little-endian hosts this
  * corresponds to SDL_PIXELFORMAT_ARGB8888 with blending disabled.
@@ -328,6 +329,7 @@ int main(int argc, char **argv)
 
     if (SDL_Init(
             SDL_INIT_VIDEO |
+            SDL_INIT_AUDIO |
             SDL_INIT_EVENTS |
             SDL_INIT_GAMECONTROLLER) != 0) {
 
@@ -447,6 +449,24 @@ int main(int argc, char **argv)
         SDL_DestroyTexture(texture);
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
+        SDL_Quit();
+        free(rom);
+
+        return 1;
+    }
+
+    if (!HostAudioInit()) {
+        fprintf(
+            stderr,
+            "[host] audio initialization failed\n");
+
+        if (controller)
+            SDL_GameControllerClose(controller);
+
+        SDL_DestroyTexture(texture);
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+
         SDL_Quit();
         free(rom);
 
@@ -576,6 +596,8 @@ int main(int argc, char **argv)
         (unsigned long long)presented_frames);
 
     Lufia1PrintDiagnostics();
+
+    HostAudioShutdown();
 
     if (controller)
         SDL_GameControllerClose(controller);
