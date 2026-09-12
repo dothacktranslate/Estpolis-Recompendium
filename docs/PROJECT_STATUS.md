@@ -17,8 +17,11 @@ Lufia I (USA) SHA256: 73731a5a7932965de02a9e98055dcf88b4d17b8f710a6ecfde3e36a1f2
 - Boot: Complete
 - Video: Complete
 - Audio: In Progress
-- Input: Not started
-- Gameplay: Not started
+- Input: Complete
+- Gameplay: Working, but not fully tested.
+
+Known issues:
+- Brief text flicker during post-battle message scrolling.
 
 ## Estopolis Denki II / Lufia II
 
