@@ -455,6 +455,16 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    /* Load battery-backed SRAM. */
+    RtlSetSaveRoot("saves/estpolis1");
+    RtlReadSram();
+
+    fprintf(
+        stderr,
+        "[host] battery SRAM ready: root=%s size=%d bytes\n",
+        RtlSaveRoot(),
+        g_sram_size);
+
     if (!HostAudioInit()) {
         fprintf(
             stderr,
@@ -596,6 +606,14 @@ int main(int argc, char **argv)
         (unsigned long long)presented_frames);
 
     Estpolis1PrintDiagnostics();
+
+    /* Persist battery-backed SRAM. */
+    RtlWriteSram();
+
+    fprintf(
+        stderr,
+        "[host] battery SRAM persisted: root=%s\n",
+        RtlSaveRoot());
 
     HostAudioShutdown();
 
